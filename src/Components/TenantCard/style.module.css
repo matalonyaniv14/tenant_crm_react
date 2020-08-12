@@ -1,0 +1,65 @@
+.cardWrap {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    min-height: 250px;
+    width: 100%;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 230px;
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.cardPaymentInfo {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+}
+
+.yearlyOverview {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 100%;
+}
+
+.overviewHeader {
+    text-align: center;
+}
+
+.overviewHeader p {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000000;
+}
+
+.overviewMonths {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.overviewMonth {
+    background-color: #74B37B;
+    padding: 10px 15px;
+    border-radius: 50%;
+}
+
+.overviewMonth p {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+}
