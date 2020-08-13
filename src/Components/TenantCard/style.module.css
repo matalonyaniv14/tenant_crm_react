@@ -56,6 +56,13 @@
     border-radius: 50%;
 }
 
+.overviewMonthUnpaid {
+    background-color: #C78989;
+    padding: 10px 15px;
+    border-radius: 50%;
+}
+
+
 .overviewMonth p {
     font-style: normal;
     font-weight: bold;

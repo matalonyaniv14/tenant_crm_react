@@ -3,29 +3,56 @@ import React from 'react';
 import style from './style.module.css';
 import PaymentBox from '../PaymentBox/PaymentBox';
 
+
+const capitalize = ( s ) => {
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
+const formatKey = ( key ) => {
+    return key.split( '_' )
+                .map( str => capitalize( str ) )
+                .join( ' ' );
+}
+
+
+
 const YearlyOverview = ( { months }) => {
-    return months.map( ( month, k ) => {
-        return ( <div key={k} className={style.overviewMonth}>
-                    <p>1</p>
-                </div> );
+    return months.map( ( _month, k ) => {
+        const { month, payed_in_full } = _month; 
+
+        return ( 
+                <div key={k} className={ payed_in_full ?  style.overviewMonth : style.overviewMonthUnpaid }>
+                    <p> { month } </p>
+                </div> 
+                );
     })
 }
 
 
-const TenantCard = () => {
+const TenantCard = ( props ) => {
+    const { address, 
+            monthly_payment,
+            snapshot,
+            payment_history } = props;
+
     return (
         <div className={style.cardWrap}>
             <div className={style.cardContent}>
                 {/* header */}
                 <div className={style.cardHeader}>
-                    <p id='header'>2115 E 70th</p>
-                    <p id='subHeader'>$800</p>
+                    <p id='header'>{ address }</p>
+                    <p id='subHeader'>{ monthly_payment }</p>
                 </div>
                 {/* paymentInfo */}
                 <div className={style.cardPaymentInfo}>
-                    <PaymentBox title='Test Title1' value='$700'/>
-                    <PaymentBox title='Test Title2' value='$701'/>
-                    <PaymentBox title='Test Title3' value='$702'/>
+                    { 
+                        Object.keys( snapshot )
+                            .map( ( key, k ) => {
+                                return  <PaymentBox key={ k } 
+                                                    title={ formatKey( key ) } 
+                                                    value={ snapshot[key] } />
+                            }) 
+                    }
                 </div>
                 {/* yearly overview */}
                 <div className={style.yearlyOverview}>
@@ -33,7 +60,7 @@ const TenantCard = () => {
                         <p>Yearly Overview</p>
                     </div>
                     <div className={style.overviewMonths}>
-                        <YearlyOverview months={ [1,2,3,4,5,6] }/>
+                        <YearlyOverview months={ payment_history }/>
                     </div>
                 </div>
             </div>
