@@ -5,6 +5,7 @@ import cx from 'classnames';
 import style from './style.module.css';
 import PaymentBox from '../PaymentBox/PaymentBox';
 import {formatKey, toCurrency} from '../../Utils/utils';
+import { Link } from 'react-router-dom';
 
 
 const YearlyOverview = ( { months }) => {
@@ -25,16 +26,21 @@ const TenantCard = ( props ) => {
     const { address, 
             monthly_payment,
             snapshot,
-            payment_history } = props;
+            payment_history,
+            id } = props;
+
+
 
     return (
         <div className={style.cardWrap}>
             <div className={style.cardContent}>
                 {/* header */}
-                <div className={style.cardHeader}>
-                    <p id='header'>{ address }</p>
-                    <p id='subHeader'>{ toCurrency( monthly_payment ) }</p>
-                </div>
+                <Link to={ (l) => ( {...l, pathname: `/tenant/${ id }`} ) }>    
+                    <div className={style.cardHeader}>
+                        <p id='header'>{ address }</p>
+                        <p id='subHeader'>{ toCurrency( monthly_payment ) }</p>
+                    </div>
+                </Link>
                 {/* paymentInfo */}
                 <div className={style.cardPaymentInfo}>
                     { 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from '../../Components/Spinner/Spinner';
 import {
     Link,
     useRouteMatch,
@@ -9,6 +10,7 @@ import Fetch from '../../Utils/Fetch';
 import { takeBalanceOwed } from '../../Utils/utils';
 import EarningsCard from '../../Components/EarningsCard/EarningsCard';
 import MonthCard from '../../Components/MonthCard/MonthCard';
+import { useState } from 'react';
 
 
 
@@ -20,27 +22,35 @@ const takeTotalEarnings = ( paymentHistory, monthlyPayment ) => {
                     .map( month => month.total_payed )
                     .reduce( ( total, curr ) => total += curr );
 
-    balanceOwed =  takeBalanceOwed(totalPayed, totalDue  );
+    balanceOwed =  takeBalanceOwed(totalPayed, totalDue);
 
     return { totalDue, totalPayed, balanceOwed };
 }
 
 
+
+
 const TenantScreen = () => {
     const{ tenantId } = useParams()
-    
+    const [ _, setState ] = useState();
+
+    const forceUpdate = () => {
+        setState({});
+    }
+
     return (
         <div>
             <Fetch path={`/tenants/${ tenantId }`} > 
                 {
                     ( { tenant }, loading, error ) => {
+
                         if ( error !== '' ) {
                             console.log('Error in TenantScreen', error);
                             return <p>error</p>
                         }
 
                         if ( loading ) {
-                            return <p>loading...</p>
+                            return  <Spinner />
                         }
 
                         const { monthly_payment, payment_history } = tenant;
@@ -52,7 +62,8 @@ const TenantScreen = () => {
                                     payment_history.map( 
                                         ( month, k ) => ( 
                                             <MonthCard key={k} 
-                                                       monthlyPayment={ monthly_payment } 
+                                                       monthly_payment={ monthly_payment }
+                                                       forceUpdate={forceUpdate} 
                                                        { ...month } />
                                         )
                                     )

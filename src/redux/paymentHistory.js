@@ -1,15 +1,6 @@
 import store from './store';
+import { updateHistorySuccess } from './reducers';
 
-const PaymentHistoryState = {
-    id: 0,
-    title: '',
-    value: 0
-}
-
-// actions
-const UPDATE_HISTORY = 'paymentHistory/updateSuccess';
-
-const updateHistorySuccess = ( paymentHistory ) => ({ type: UPDATE_HISTORY, payload: paymentHistory })
 
 // action creators
 export const updatePaymentHistory = async ( paymentObject ) => {
@@ -22,19 +13,9 @@ export const updatePaymentHistory = async ( paymentObject ) => {
                                 method: 'put',
                                 body: JSON.stringify( { title, value } )
                             })
-    const data = await result.json();
-    store.dispatch( updateHistorySuccess( data )  );
+    const resp = await result.json();
+    store.dispatch( updateHistorySuccess( resp.data )  );
 
 }
 
-const paymentHistoryReducer = ( state=PaymentHistoryState, action ) => {
-    switch ( action ) {
-        case UPDATE_HISTORY: 
-            debugger
-            console.log('update history', action, state );
-        default: 
-            return state
-    }
-} 
 
-export default paymentHistoryReducer;

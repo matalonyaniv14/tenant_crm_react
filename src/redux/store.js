@@ -1,11 +1,11 @@
 import { combineReducers, createStore } from 'redux';
 
-import PaymentHistoryReducer from './paymentHistory';
+import {paymentHistoryReducer} from './reducers';
 
 const rootReducer = combineReducers({
-    paymentHistory: PaymentHistoryReducer
+    paymentHistoryReducer: paymentHistoryReducer
 })
 
 const store = createStore( rootReducer );
-
+console.log( store.getState());
 export default store;

@@ -4,70 +4,51 @@ import cx from 'classnames';
 
 import tenantStyle from '../TenantCard/style.module.css';
 import PaymentBox from '../PaymentBox/PaymentBox';
-import {formatKey, toCurrency, formatIfNul, takeBalanceOwed} from '../../Utils/utils';
-import { updatePaymentHistory } from '../../redux/paymentHistory';
-
-
-
-const MONTHS = [ "January", "February", "March", "April", "May", 
-                 "June", "July", "August", "September", "October", 
-                  "November", "December" 
-               ];
-
-const formatDate = ( d ) => {
-    let [month, day, year]  = ( new Date( d ) ).toLocaleDateString().split("/");
-
-    return `${ MONTHS[month] } ${ day }, ${ year }`
-}
+import {takeBalanceOwed, formatDate, MONTHS} from '../../Utils/utils';
 
 
 
 const MonthCard = ( props ) => {
-    const [ editableBox, setEditableBox ] = useState({
-        id: 0,
-        title: '',
-        value: 0,
-        focused: false
-    })
-
+    const [ editableBox, setEditableBox ] = useState({focused: false, ...props })
     const { id,
             month, 
             updated_at,
             total_payed,
             method_payed,
-            monthlyPayment } = props;
-
+            monthly_payment,
+            forceUpdate } = props;
+        
 
     const handleClick = ( title, value) => {
-        setEditableBox({ title, value, focused: !editableBox.focused });
+        setEditableBox({
+             ...editableBox, 
+             title, 
+             value, 
+             focused: !editableBox.focused 
+        });
     }
 
     const onInput = ( val ) => {
-        console.log(val.target.value)
         setEditableBox( {...editableBox, value: val.target.value} )
     }
 
     const onBlur = ( e ) => {
-        console.log(editableBox);
-        console.log(props.id);
-        const payload = { 
+        let body = JSON.stringify( { 
             title: editableBox.title, 
-            value: editableBox.value, 
-            id: props.id 
-        }
+            value: editableBox.value 
+        })
+        
+        fetch( `http://localhost:3000/payment_history/${ id }`, {
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8' 
+            },
+            method: 'put',
+            body: body
+        }).then( response => response.json() )
+          .then( d => setEditableBox(d.data) )
 
-        updatePaymentHistory( payload );
-        // fetch( `http://localhost:3000/payment_history/${ id }`, {
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8' 
-        //     },
-        //     method: 'put',
-        //     body: JSON.stringify( { title: editableBox.title, value: editableBox.value } )
-        // })
-        //     .then( response => response.json() )
-        //     .then( data => console.log( data ) )
-
-        handleClick();
+        // re update props
+        forceUpdate();
     }
 
 
@@ -80,13 +61,20 @@ const MonthCard = ( props ) => {
                     :
                 <>
                     <div className={tenantStyle.cardHeader}>
-                        <p id='header'> { MONTHS[month] } </p>
+                        <p id='header'> { MONTHS[month - 1] } </p>
                         <p id='subHeader'> last edited on { formatDate( updated_at ) } </p>
                     </div> 
                     <div className={tenantStyle.cardPaymentInfo}>
-                        <PaymentBox onClick={ () => handleClick( 'Total Payed', total_payed ) } title='Total Payed' value={ total_payed } />
-                        <PaymentBox title='Balance Owed' value={ takeBalanceOwed( total_payed, monthlyPayment ) }/>
-                        <PaymentBox title='Method Payed' value={ method_payed }/>
+                        <PaymentBox onClick={ () => handleClick( 'Total Payed', total_payed ) } 
+                                    title='Total Payed' 
+                                    value={ total_payed } />
+
+                        <PaymentBox title='Balance Owed' 
+                                    value={ takeBalanceOwed( total_payed, monthly_payment ) }/>
+
+                        <PaymentBox onClick={ () => handleClick( 'Method Payed', method_payed ) } 
+                                    title='Method Payed' 
+                                    value={ method_payed }/>
                     </div>
                 </>
                 }

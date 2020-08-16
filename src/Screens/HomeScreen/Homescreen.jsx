@@ -3,7 +3,7 @@ import React from 'react';
 import TenantCard from '../../Components/TenantCard/TenantCard';
 import EarningsCard from '../../Components/EarningsCard/EarningsCard';
 import Fetch from '../../Utils/Fetch';
-
+import Spinner from '../../Components/Spinner/Spinner';
 
 const takeTotalEarnings = ( tenants ) => {
     const totalEarnings = {
@@ -36,7 +36,7 @@ const HomeScreen = () => {
                             return (   
                                 <> 
                                     <EarningsCard />
-                                    {'Loading...'} 
+                                    <Spinner />
                                 </>
                             );
                         }

@@ -28,3 +28,16 @@ export const takeBalanceOwed = ( totalPayed, totalDue ) => {
     return totalPayed - totalDue;
 }
 
+
+export const formatDate = ( d ) => {
+    let [month, day, year]  = ( new Date( d ) ).toLocaleDateString().split("/");
+
+    return `${ MONTHS[month] } ${ day }, ${ year }`
+}
+
+
+export const MONTHS = [ "January", "February", "March", "April", "May", 
+                         "June", "July", "August", "September", "October", 
+                        "November", "December" 
+                     ];
+
