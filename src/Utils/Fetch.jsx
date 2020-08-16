@@ -13,6 +13,10 @@ const Fetch = ( props ) => {
             fetch( BASE_PATH + props.path )
                 .then( resp => resp.json() )
                 .then( ( data ) => {
+                    console.log( 'data', data )
+                    if ( data.status !== 200 ) {
+                        setError( data.error );
+                    }
                     setData( data );
                     setLoading( false );
                 })

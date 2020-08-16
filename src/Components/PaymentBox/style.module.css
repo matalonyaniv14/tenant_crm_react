@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    height: 100%;
 }
 
 .paymentHeader {
@@ -16,13 +17,53 @@
 .paymentValue {
     background: #B2EFB8;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 20px;
+    /* padding: 20px; */
+    height: 60px;
+    width: 80px;
+    overflow: hidden;
+    text-align: center;
+    overflow-wrap: break-word;
 }
 
 .paymentValue p {
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 13px;
     line-height: 21px;
     color: #000000;
+    margin-top: 15px;
 }
+
+.unpaid {
+    background-color: #C78989 !important;
+}
+
+/* activeEditable */
+
+.activeEditable .paymentValue {
+    width: 80vw;
+    margin: 0 auto;
+    height: 80%;
+}
+
+.activeEditable .paymentValue p {
+    height: 100%;
+    padding-top: 15%;
+}
+
+.activeEditable p {
+    font-size: 28px;
+}
+
+.activeEditable input {
+    outline: none;
+    border: none;
+    background: #B2EFB8;
+    height: 100%;
+}
+
+.activeEditable input {
+    font-size: 28px;
+    text-align: center;
+}
+

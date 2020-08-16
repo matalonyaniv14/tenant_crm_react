@@ -1,27 +1,19 @@
 import React from 'react';
+import cx from 'classnames';
+
 
 import style from './style.module.css';
 import PaymentBox from '../PaymentBox/PaymentBox';
-
-
-const capitalize = ( s ) => {
-    return s.charAt(0).toUpperCase() + s.slice(1)
-  }
-
-const formatKey = ( key ) => {
-    return key.split( '_' )
-                .map( str => capitalize( str ) )
-                .join( ' ' );
-}
-
+import {formatKey, toCurrency} from '../../Utils/utils';
 
 
 const YearlyOverview = ( { months }) => {
     return months.map( ( _month, k ) => {
         const { month, payed_in_full } = _month; 
-
+        
         return ( 
-                <div key={k} className={ payed_in_full ?  style.overviewMonth : style.overviewMonthUnpaid }>
+                <div key={k} 
+                     className={ cx( style.overviewMonth, { [style.unpaid]: !payed_in_full }  ) }>
                     <p> { month } </p>
                 </div> 
                 );
@@ -41,7 +33,7 @@ const TenantCard = ( props ) => {
                 {/* header */}
                 <div className={style.cardHeader}>
                     <p id='header'>{ address }</p>
-                    <p id='subHeader'>{ monthly_payment }</p>
+                    <p id='subHeader'>{ toCurrency( monthly_payment ) }</p>
                 </div>
                 {/* paymentInfo */}
                 <div className={style.cardPaymentInfo}>

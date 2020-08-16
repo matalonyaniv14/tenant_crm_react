@@ -1,0 +1,58 @@
+.nav {
+    background: #8574B3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.wrap {
+    min-height: 50px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.icon {
+    height: 2em;
+    width: 2em;
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    color: white;
+}
+
+.icon svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+/* active */
+
+.activeWrap {
+    position: fixed !important;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 20%;
+}
+
+.activeMenu {
+    padding: 100px 0px 0px 20px;
+    color: #ffffff;
+    width: 100%;
+}
+
+.activeMenu ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.activeMenu ul li {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 60px;
+    width: 70%;
+}
+
+.activeMenu ul li:last-child {
+    margin-top: 90px;
+}

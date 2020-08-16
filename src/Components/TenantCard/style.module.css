@@ -2,7 +2,7 @@
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     min-height: 250px;
-    width: 100%;
+    margin: 10px;
 }
 
 .cardContent {
@@ -48,25 +48,28 @@
 .overviewMonths {
     display: flex;
     justify-content: space-evenly;
+    
 }
 
-.overviewMonth {
-    background-color: #74B37B;
-    padding: 10px 15px;
-    border-radius: 50%;
-}
-
-.overviewMonthUnpaid {
-    background-color: #C78989;
-    padding: 10px 15px;
-    border-radius: 50%;
-}
-
-
-.overviewMonth p {
+.overviewMonths p {
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
     line-height: 14px;
     color: #FFFFFF;
+}
+
+.overviewMonth {
+    background-color: #74B37B;
+    border-radius: 50%;
+    height: 25px;
+    width: 30px;
+    padding: 8px 3px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.unpaid {
+    background-color: #C78989 !important;
 }
