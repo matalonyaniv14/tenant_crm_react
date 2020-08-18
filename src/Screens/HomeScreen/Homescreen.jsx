@@ -41,7 +41,7 @@ const HomeScreen = ( props ) => {
                 {
                     ( data, loading, error) => {
                         // handle error
-                        if ( error !== '' )  console.log( "error in homescreen", error )
+                        if ( error !== '' )  return <h1>error { error }</h1>
                         
                         if ( loading ) {
                             return (   
@@ -52,6 +52,7 @@ const HomeScreen = ( props ) => {
                         }
 
                         const tenants = filter === 'late_payments' ? latePayments( data.tenants ) : data.tenants;
+                        
                         return (
                             <>
                                 <EarningsCard { ...takeTotalEarnings( tenants ) } />

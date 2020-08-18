@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
+import BASE_PATH from '../../Utils/Fetch';
 
 const burgerIcon = <FontAwesomeIcon icon={faBars} />
 const timesIcon  = <FontAwesomeIcon icon={faTimes} />
@@ -42,7 +43,7 @@ const Navbar = () => {
                                 <li>Home</li>
                             </Link>
                             <li>Add tenant</li>
-                            <Link to={ ( l ) => ({ ...l, filter: 'late_payments' }) }>
+                            <Link to={ ( l ) => ({ pathname: '/', filter: 'late_payments' }) }>
                                 <li>Who Owes Me Money?</li>
                             </Link>
                         </ul>
