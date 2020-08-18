@@ -22,7 +22,7 @@ const Fetch = ( props ) => {
         } catch(e) {
             setError(e);
         }
-    }, []);
+    });
 
 
 
