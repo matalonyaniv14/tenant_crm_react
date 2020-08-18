@@ -39,6 +39,9 @@
 }
 
 /* activeEditable */
+.activeEditable .paymentHeader {
+    padding-bottom: 30px;
+}
 
 .activeEditable .paymentValue {
     width: 80vw;
@@ -59,11 +62,13 @@
     outline: none;
     border: none;
     background: #B2EFB8;
-    height: 100%;
-}
-
-.activeEditable input {
+    height: auto;
     font-size: 28px;
     text-align: center;
+    height: 100px;
+    margin-top: 13px;
+    padding-top: 10px;
+    width: 50%;
+    margin: 0 auto;
 }
 

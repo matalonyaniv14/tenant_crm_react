@@ -37,12 +37,14 @@ const Navbar = () => {
                     { timesIcon }
                 </div>
                     <div className={ style.activeMenu }>
-                        <ul>
+                        <ul onClick={handleClick}>
                             <Link to='/'>
                                 <li>Home</li>
                             </Link>
                             <li>Add tenant</li>
-                            <li>Who Owes Me Money?</li>
+                            <Link to={ ( l ) => ({ ...l, filter: 'late_payments' }) }>
+                                <li>Who Owes Me Money?</li>
+                            </Link>
                         </ul>
                     </div>
             </div>

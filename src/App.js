@@ -19,15 +19,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar />
-        <Switch>
-          <Route path='/tenant/:tenantId'>
-            <TenantScreen />
-          </Route>
-          <Route path='/'>
-            <HomeScreen />
-          </Route>
-        </Switch>
+        <Navbar />
+          <Switch>
+            <Route path='/tenant/:tenantId'>
+              <TenantScreen />
+            </Route>
+            <Route path='/'>
+              <HomeScreen />
+            </Route>
+          </Switch>
       </Router>
     </div>
   );

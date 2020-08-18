@@ -5,11 +5,12 @@ import cx from 'classnames';
 import tenantStyle from '../TenantCard/style.module.css';
 import PaymentBox from '../PaymentBox/PaymentBox';
 import {takeBalanceOwed, formatDate, MONTHS} from '../../Utils/utils';
-
+import Spinner  from '../Spinner/Spinner';
+import { BASE_PATH } from '../../Utils/Fetch';
 
 
 const MonthCard = ( props ) => {
-    const [ editableBox, setEditableBox ] = useState({focused: false, ...props })
+    const [ editableBox, setEditableBox ] = useState({focused: false,loading: false, ...props })
     const { id,
             month, 
             updated_at,
@@ -33,29 +34,39 @@ const MonthCard = ( props ) => {
     }
 
     const onBlur = ( e ) => {
+        setEditableBox( { ...editableBox, loading: true } )
         let body = JSON.stringify( { 
             title: editableBox.title, 
             value: editableBox.value 
         })
         
-        fetch( `http://localhost:3000/payment_history/${ id }`, {
+        fetch( `${BASE_PATH}/payment_history/${ id }`, {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8' 
             },
             method: 'put',
             body: body
         }).then( response => response.json() )
-          .then( d => setEditableBox(d.data) )
+          .then( d => setEditableBox({
+              ...d.data,
+              loading: false
+          }))
 
         // re update props
         forceUpdate();
     }
 
 
+    // show spinner if loading paymentBox update
+    if ( editableBox.loading ) {
+        return ( <Spinner /> )
+    }
+
 
     return (
         <div className={tenantStyle.cardWrap}>
             <div className={tenantStyle.cardContent}>
+                
                { editableBox.focused ? 
                     <PaymentBox onInput={onInput} onBlur={onBlur} title={editableBox.title} value={editableBox.value} editable />
                     :

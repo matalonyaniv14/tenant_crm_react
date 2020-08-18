@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 
 const YearlyOverview = ( { months }) => {
     return months.map( ( _month, k ) => {
+        if ( k > 3 ) return;
+
         const { month, payed_in_full } = _month; 
         
         return ( 

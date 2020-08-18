@@ -4,6 +4,7 @@ import TenantCard from '../../Components/TenantCard/TenantCard';
 import EarningsCard from '../../Components/EarningsCard/EarningsCard';
 import Fetch from '../../Utils/Fetch';
 import Spinner from '../../Components/Spinner/Spinner';
+import { useLocation } from 'react-router-dom';
 
 const takeTotalEarnings = ( tenants ) => {
     const totalEarnings = {
@@ -23,7 +24,17 @@ const takeTotalEarnings = ( tenants ) => {
 
 
 
-const HomeScreen = () => {
+const latePayments = ( tenants ) => {
+    return tenants.filter( ( t ) => {
+        return t.snapshot.balance_owed < 0;
+    } )
+}
+
+
+
+const HomeScreen = ( props ) => {
+    const { filter } = useLocation();
+    
     return (
         <>
             <Fetch path='/tenants/'>
@@ -35,17 +46,17 @@ const HomeScreen = () => {
                         if ( loading ) {
                             return (   
                                 <> 
-                                    <EarningsCard />
                                     <Spinner />
                                 </>
                             );
                         }
 
+                        const tenants = filter === 'late_payments' ? latePayments( data.tenants ) : data.tenants;
                         return (
                             <>
-                                <EarningsCard { ...takeTotalEarnings( data.tenants ) } />
+                                <EarningsCard { ...takeTotalEarnings( tenants ) } />
                                 {
-                                    data.tenants.map( 
+                                    tenants.map( 
                                         ( tenant, k ) => <TenantCard key={k} { ...tenant } />
                                     )
                                 }

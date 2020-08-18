@@ -55,6 +55,7 @@ const TenantScreen = () => {
 
                         const { monthly_payment, payment_history } = tenant;
 
+                     
                         return (
                             <>
                                 <EarningsCard  { ...takeTotalEarnings( payment_history, monthly_payment ) } />

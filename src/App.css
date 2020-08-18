@@ -16,6 +16,7 @@ body {
     font-size: 12px;
     line-height: 14px;
     color: #747373;
+    padding-top: 10px;
 }
 
 
@@ -27,4 +28,8 @@ p {
     margin-block-end: 0px;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+
+a {
+    text-decoration: none !important;
 }

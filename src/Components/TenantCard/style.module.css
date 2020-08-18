@@ -1,15 +1,18 @@
 .cardWrap {
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    min-height: 250px;
+    min-height: 150px;
+    height: auto;
     margin: 10px;
+    padding: 10px 0px;
 }
 
 .cardContent {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 230px;
+    /* height: 230px; */
+    height: auto;
 }
 
 .cardHeader {
@@ -23,18 +26,22 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    height: 100%;
+    height: auto;
+    padding: 30px 0px;
 }
 
 .yearlyOverview {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; */
+    height: auto;
+    padding: 20px 0px;
 }
 
 .overviewHeader {
     text-align: center;
+    padding: 15px;
 }
 
 .overviewHeader p {
@@ -54,19 +61,22 @@
 .overviewMonths p {
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     color: #FFFFFF;
+    padding: 0px;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .overviewMonth {
     background-color: #74B37B;
     border-radius: 50%;
-    height: 25px;
-    width: 30px;
-    padding: 8px 3px 0px;
-    display: flex;
-    justify-content: center;
+    height: 30px;
+    width: 35px;
+    padding: 10px 3px 0px;
+    text-align: center;
+    position: relative;
 }
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const BASE_PATH = 'http://localhost:3000';
+export const BASE_PATH = 'https://d7bd256c30f9.ngrok.io';
 
 
 const Fetch = ( props ) => {
