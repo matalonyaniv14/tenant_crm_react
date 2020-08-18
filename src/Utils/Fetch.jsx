@@ -22,9 +22,9 @@ const Fetch = ( props ) => {
         } catch(e) {
             setError(e);
         }
-    });
+    }, [props.children]);
 
-
+// 
 
     return (
          props.children( data, loading, error )
