@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export const BASE_PATH = 'https://tenant-crm-api.herokuapp.com/';
+export const BASE_PATH = 'https://tenant-crm-api.herokuapp.com';
 
 
 const Fetch = ( props ) => {
