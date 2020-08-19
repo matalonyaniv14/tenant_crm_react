@@ -12,7 +12,12 @@ const Fetch = ( props ) => {
         window.alert( ' STARTING FETCH ' );
         try {
             fetch( BASE_PATH + props.path )
-                .then( resp => resp.json() )
+                .then( (resp) =>{ 
+                    window.alert( 'PARSING JSON', resp );
+                    resp.json()
+                    window.alert( 'PARSING JSON FINISHED', resp );
+                    return resp.json();
+                })
                 .then( ( data ) => {
                     window.alert( ' FETCH FINISHED' );
                     if ( data.status !== 200 ) {
@@ -24,6 +29,7 @@ const Fetch = ( props ) => {
                     setLoading( false );
                 })
         } catch(e) {
+            window.alert('CATCH ERROR ', e);
             setError(e);
         }
     }, [props.children]);

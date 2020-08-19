@@ -37,7 +37,7 @@ const HomeScreen = ( props ) => {
     
     return (
         <>
-            <Fetch path='/tenants/'>
+            <Fetch path='/tenants'>
                 {
                     ( data, loading, error) => {
                         // handle error
@@ -52,7 +52,7 @@ const HomeScreen = ( props ) => {
                         }
 
                         const tenants = filter === 'late_payments' ? latePayments( data.tenants ) : data.tenants;
-                        
+
                         return (
                             <>
                                 <EarningsCard { ...takeTotalEarnings( tenants ) } />
