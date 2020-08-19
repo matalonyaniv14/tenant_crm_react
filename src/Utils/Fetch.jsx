@@ -9,17 +9,17 @@ const Fetch = ( props ) => {
     const [ error, setError ] = useState('');
  
     useEffect( () => {
-        console.alert( ' STARTING FETCH ' );
+        window.alert( ' STARTING FETCH ' );
         try {
             fetch( BASE_PATH + props.path )
                 .then( resp => resp.json() )
                 .then( ( data ) => {
-                    console.alert( ' FETCH FINISHED' );
+                    window.alert( ' FETCH FINISHED' );
                     if ( data.status !== 200 ) {
-                        console.alert('ERROR ', data);
+                        window.alert('ERROR ', data);
                         setError( data.error );
                     }
-                    console.alert( 'NO ERROR ', data );
+                    window.alert( 'NO ERROR ', data );
                     setData( data );
                     setLoading( false );
                 })
