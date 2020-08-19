@@ -14,8 +14,6 @@ const Fetch = ( props ) => {
             fetch( BASE_PATH + props.path )
                 .then( (resp) =>{ 
                     window.alert( 'PARSING JSON', resp );
-                    resp.json()
-                    window.alert( 'PARSING JSON FINISHED', resp );
                     return resp.json();
                 })
                 .then( ( data ) => {
