@@ -13,7 +13,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-import BASE_PATH from '../../Utils/Fetch';
 
 const burgerIcon = <FontAwesomeIcon icon={faBars} />
 const timesIcon  = <FontAwesomeIcon icon={faTimes} />

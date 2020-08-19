@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
 
 import Fetch from '../../Utils/Fetch';
-import { takeBalanceOwed } from '../../Utils/utils';
+import { takeBalanceOwed, sortBy } from '../../Utils/utils';
 import EarningsCard from '../../Components/EarningsCard/EarningsCard';
 import MonthCard from '../../Components/MonthCard/MonthCard';
 import { useState } from 'react';
@@ -30,6 +30,7 @@ const takeTotalEarnings = ( paymentHistory, monthlyPayment ) => {
 
 
 
+
 const TenantScreen = () => {
     const{ tenantId } = useParams()
     const [ _, setState ] = useState();
@@ -45,8 +46,7 @@ const TenantScreen = () => {
                     ( { tenant }, loading, error ) => {
 
                         if ( error !== '' ) {
-                            console.log('Error in TenantScreen', error);
-                            return <p>error</p>
+                            return <p> {error} </p>
                         }
 
                         if ( loading ) {
@@ -55,12 +55,11 @@ const TenantScreen = () => {
 
                         const { monthly_payment, payment_history } = tenant;
 
-                     
                         return (
                             <>
                                 <EarningsCard  { ...takeTotalEarnings( payment_history, monthly_payment ) } />
                                 { 
-                                    payment_history.map( 
+                                    sortBy(payment_history, 'month').map( 
                                         ( month, k ) => ( 
                                             <MonthCard key={k} 
                                                        monthly_payment={ monthly_payment }

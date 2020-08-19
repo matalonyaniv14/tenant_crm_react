@@ -41,7 +41,7 @@ const HomeScreen = ( props ) => {
                 {
                     ( data, loading, error) => {
                         // handle error
-                        if ( error !== '' )  return <h1>error { error }</h1>
+                        if ( error !== '' )  return <p>{ error }</p>
                         
                         if ( loading ) {
                             return (   
