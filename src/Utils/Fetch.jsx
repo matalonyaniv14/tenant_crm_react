@@ -9,8 +9,8 @@ const Fetch = ( props ) => {
     const [ error, setError ] = useState('');
  
     useEffect( () => {
-        window.alert( ' STARTING FETCH ' );
         try {
+            window.alert( ' STARTING FETCH ',  BASE_PATH + props.path );
             fetch( BASE_PATH + props.path )
                 .then( (resp) =>{ 
                     window.alert( 'PARSING JSON', resp );
@@ -26,6 +26,8 @@ const Fetch = ( props ) => {
                     setData( data );
                     setLoading( false );
                 })
+
+                window.alert( 'END ' );
         } catch(e) {
             window.alert('CATCH ERROR ', e);
             setError(e);
