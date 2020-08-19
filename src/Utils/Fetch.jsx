@@ -10,26 +10,16 @@ const Fetch = ( props ) => {
  
     useEffect( () => {
         try {
-            window.alert( `STARTING FETCH ${BASE_PATH + props.path}` );
-            fetch( BASE_PATH + props.path )
-                .then( (resp) =>{ 
-                    window.alert( 'PARSING JSON', resp );
+            fetch( BASE_PATH + props.path ).then( (resp) =>{ 
                     return resp.json();
-                })
-                .then( ( data ) => {
-                    window.alert( ' FETCH FINISHED' );
-                    // if ( data.status !== 200 ) {
-                    //     window.alert('ERROR ', data);
-                    //     setError( data.error );
-                    // }
-                    window.alert( 'NO ERROR ', data );
+                }).then( ( data ) => {
+                    if ( data.status !== 200 ) {
+                        setError( data.error );
+                    }
                     setData( data );
                     setLoading( false );
                 })
-
-                window.alert( 'END ' );
         } catch(e) {
-            window.alert('CATCH ERROR ', e);
             setError(e);
         }
     }, [props.children]);
