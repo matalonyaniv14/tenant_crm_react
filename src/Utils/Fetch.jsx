@@ -10,7 +10,7 @@ const Fetch = ( props ) => {
  
     useEffect( () => {
         try {
-            window.alert( ' STARTING FETCH ',  BASE_PATH + props.path );
+            window.alert( `STARTING FETCH ${BASE_PATH + props.path}` );
             fetch( BASE_PATH + props.path )
                 .then( (resp) =>{ 
                     window.alert( 'PARSING JSON', resp );
