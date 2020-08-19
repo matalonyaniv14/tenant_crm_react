@@ -18,10 +18,10 @@ const Fetch = ( props ) => {
                 })
                 .then( ( data ) => {
                     window.alert( ' FETCH FINISHED' );
-                    if ( data.status !== 200 ) {
-                        window.alert('ERROR ', data);
-                        setError( data.error );
-                    }
+                    // if ( data.status !== 200 ) {
+                    //     window.alert('ERROR ', data);
+                    //     setError( data.error );
+                    // }
                     window.alert( 'NO ERROR ', data );
                     setData( data );
                     setLoading( false );
