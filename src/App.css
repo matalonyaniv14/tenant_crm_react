@@ -33,3 +33,26 @@ p {
 a {
     text-decoration: none !important;
 }
+
+
+.toggleYearWrap {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.toggleYearToggler {
+    background: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    height: 40px;
+    width: 45px;
+    cursor: pointer;
+}
+
+.disabled {
+    background: #1a4163;
+    color: red;
+    cursor: not-allowed;
+}

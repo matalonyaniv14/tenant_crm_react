@@ -9,18 +9,21 @@ import { Link } from 'react-router-dom';
 
 
 const YearlyOverview = ( { months }) => {
-    return months.map( ( _month, k ) => {
-        if ( k > 3 ) return;
+    return  months.filter( m => ( 
+        m.year === new Date().getFullYear()) 
+        ).map( ( _month, k ) => {
 
-        const { month, payed_in_full } = _month; 
+            if ( k > 5 ) return;
+
+             const { month, payed_in_full } = _month; 
         
-        return ( 
-                <div key={k} 
-                     className={ cx( style.overviewMonth, { [style.unpaid]: !payed_in_full }  ) }>
-                    <p> { month } </p>
-                </div> 
-                );
-    })
+            return ( 
+                    <div key={k} 
+                        className={ cx( style.overviewMonth, { [style.unpaid]: !payed_in_full }  ) }>
+                        <p> { month } </p>
+                    </div> 
+                    );
+        })
 }
 
 

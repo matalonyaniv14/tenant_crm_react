@@ -12,14 +12,15 @@ import { BASE_PATH } from '../../Utils/Fetch';
 const MonthCard = ( props ) => {
     const [ editableBox, setEditableBox ] = useState({focused: false,loading: false, ...props })
     const { id,
-            month, 
-            updated_at,
-            total_payed,
-            method_payed,
-            monthly_payment,
-            forceUpdate } = props;
+        month, 
+        updated_at,
+        total_payed,
+        method_payed,
+        monthly_payment,
+        forceUpdate } = props;
         
-
+    const isCurrentMonth = new Date().getMonth() === month;
+    
     const handleClick = ( title, value) => {
         setEditableBox({
              ...editableBox, 
@@ -64,7 +65,7 @@ const MonthCard = ( props ) => {
 
 
     return (
-        <div className={tenantStyle.cardWrap}>
+        <div className={cx(tenantStyle.cardWrap, { [tenantStyle.currentMonth]: isCurrentMonth })}>
             <div className={tenantStyle.cardContent}>
                 
                { editableBox.focused ? 
@@ -72,7 +73,7 @@ const MonthCard = ( props ) => {
                     :
                 <>
                     <div className={tenantStyle.cardHeader}>
-                        <p id='header'> { MONTHS[month - 1] } </p>
+                        <p id='header'> { MONTHS[month] } </p>
                         <p id='subHeader'> last edited on { formatDate( updated_at ) } </p>
                     </div> 
                     <div className={tenantStyle.cardPaymentInfo}>

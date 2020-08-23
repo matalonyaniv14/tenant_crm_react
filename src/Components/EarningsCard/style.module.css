@@ -21,3 +21,7 @@
     padding: 20px 0px;
 }
 
+/* currentMonth style */
+.currentMonth {
+    border-top: 5px solid;
+}

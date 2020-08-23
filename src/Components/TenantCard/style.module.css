@@ -83,3 +83,8 @@
 .unpaid {
     background-color: #C78989 !important;
 }
+
+/* currentMonth style */
+.currentMonth {
+    border-top: 5px solid;
+}
