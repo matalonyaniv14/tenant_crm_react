@@ -26,7 +26,7 @@ const Fetch = ( props ) => {
                     setData( data );
                     setLoading( false );
                 }).catch((e) => {
-                    setError('There was an error, please try reloading the page and make sure you have internet connection.')
+                    setError(e);
                 })
         } catch(e) {
             setError(e);
