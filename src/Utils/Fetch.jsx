@@ -26,7 +26,7 @@ const Fetch = ( props ) => {
                     setData( data );
                     setLoading( false );
                 }).catch((e) => {
-                    setError(e);
+                    setError(JSON.stringify(e));
                 })
         } catch(e) {
             setError(e);
