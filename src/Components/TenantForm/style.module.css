@@ -1,0 +1,12 @@
+.submit {
+    border: none;
+    width: 100%;
+    padding: 30px;
+    background: #673AB7;
+    margin-top: 25px;
+    font-size: 27px;
+    color: white;
+    font-weight: bold;
+    box-shadow: #675656 -3px -3px 6px 1px;
+
+}

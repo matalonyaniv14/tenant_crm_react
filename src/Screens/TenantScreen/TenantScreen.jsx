@@ -12,6 +12,7 @@ import EarningsCard from '../../Components/EarningsCard/EarningsCard';
 import MonthCard from '../../Components/MonthCard/MonthCard';
 import { useState } from 'react';
 import cx from 'classnames';
+import  TenantInfo  from '../../Components/TenantInfo/TenantInfo';
 
 
 const MAX_YEAR = 2030;
@@ -37,9 +38,15 @@ const ToggleYear = ( { year, callback } ) => {
     
     return (
         <div className='toggleYearWrap'>
-           <div className={cx('toggleYearToggler', {['disabled']: year >= MAX_YEAR })}> <p onClick={ () => callback('ADD') }  >+</p></div>
-            <p style={{fontWeight: 'bold', fontSize: '25px'}}> {year} </p>
-           <div className={cx('toggleYearToggler', { ['disabled']: year <= MIN_YEAR })}> <p onClick={ () => callback('MINUS') }>-</p></div>
+           <div className={cx('toggleYearToggler', {['disabled']: year >= MAX_YEAR })}>
+                <p onClick={ () => callback('ADD') }  >+</p>
+            </div>
+            <p style={{fontWeight: 'bold', fontSize: '25px'}}>
+                 {year} 
+            </p>
+           <div className={cx('toggleYearToggler', { ['disabled']: year <= MIN_YEAR })}>
+                <p onClick={ () => callback('MINUS') }>-</p>
+            </div>
         </div>
     );
 }
@@ -51,6 +58,7 @@ const TenantScreen = () => {
     const{ tenantId } = useParams()
     const [_, setState ] = useState(null);
     const [ year, setYear ] = useState(new Date().getFullYear());
+    const [ infoShown, setInfoShown ] = useState(false);
     
     const forceUpdate = () => {
         setState({});
@@ -86,6 +94,11 @@ const TenantScreen = () => {
                             return  <Spinner />
                         }
 
+                        if ( infoShown ) {
+                            return <TenantInfo {...tenant} />
+                        }
+
+
                         let { monthly_payment, payment_history } = tenant;
                     
                         payment_history =  payment_history.filter( ({ year: _year }) => _year === year )
@@ -93,6 +106,11 @@ const TenantScreen = () => {
                         return (
                             <>
                                 <EarningsCard  { ...takeTotalEarnings( payment_history, monthly_payment ) } />
+                                <p onClick={ () => setInfoShown(true) }
+                                   id='header' 
+                                   style={{ textAlign: 'center', marginBottom: '30px' }}>
+                                    View all info for { tenant.name }
+                                </p>
                                 <ToggleYear year={year} callback={_setYear} />
                                 { 
                                     sortBy(payment_history, 'month').map( 

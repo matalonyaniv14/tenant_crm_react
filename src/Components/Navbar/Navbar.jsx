@@ -41,7 +41,9 @@ const Navbar = () => {
                             <Link to='/'>
                                 <li>Home</li>
                             </Link>
-                            <li>Add tenant</li>
+                            <Link to='/tenant/new'>
+                                <li>Add tenant</li>
+                            </Link>
                             <Link to={ ( l ) => ({ pathname: '/', filter: 'late_payments' }) }>
                                 <li>Who Owes Me Money?</li>
                             </Link>

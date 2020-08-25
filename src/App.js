@@ -12,7 +12,7 @@ import './App.css';
 import HomeScreen from './Screens/HomeScreen/Homescreen';
 import TenantScreen from './Screens/TenantScreen/TenantScreen';
 import Navbar from './Components/Navbar/Navbar';
-
+import TenantForm from './Components/TenantForm/TenantForm';
 
 
 function App() {
@@ -21,6 +21,9 @@ function App() {
       <Router>
         <Navbar />
           <Switch>
+            <Route path='/tenant/new' >
+              <TenantForm />
+            </Route>
             <Route path='/tenant/:tenantId'>
               <TenantScreen />
             </Route>

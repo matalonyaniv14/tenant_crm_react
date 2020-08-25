@@ -1,0 +1,50 @@
+.wrap {
+    margin: 10px auto;
+    width: 90%;
+    border-radius: 10px;
+}
+.title {
+    margin: 5px 0px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all .25s;
+    -moz-transition: all .25s;
+}
+
+.bar {
+    margin: 0 auto;
+    background-color: #E5E5E5;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 5px;
+    transition: all .25s;
+    -moz-transition: all .25s;
+}
+
+.bar input {
+    font-size: 24px;
+    outline: none;
+    background: inherit;
+    border: none;
+    text-align: center;
+}
+/* 
+.activeTitle {
+    font-size: 28px;
+    color: green;
+} */
+
+/* .activeWrap {
+    background-color: white;
+    padding: 35px 0px;
+} */
+
+.activeWrap  .bar {
+    background-color: white;
+    padding: 35px 0px;
+}
+
+.activeWrap .title {
+    font-size: 28px;
+    color: green;
+}

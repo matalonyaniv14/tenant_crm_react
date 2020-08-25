@@ -20,6 +20,8 @@ export const formatIfNull = ( str ) => {
     return str ?? 'Not Set';
 }
 
+export const addZero =  num  => num < 10 ? `0${num}` : num
+
 export const isNumber = ( elem ) => {
     return typeof elem === 'number';
 }
@@ -42,7 +44,6 @@ export const MONTHS = [ "January", "February", "March", "April", "May",
                      ];
 
 export const sortBy = ( list, key ) => {
-    console.log(this, 'sortBy');
     const sorted = list.sort( ( { [key]: a }, { [key]: b } ) => {
         return a - b
     })
