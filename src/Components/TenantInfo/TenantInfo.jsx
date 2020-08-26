@@ -32,7 +32,6 @@ export const InfoBar = ( { id, label, title, value, type='text', callback } ) =>
     const handleBlur = ( elem ) => {
         const currentWrap   = wrapEl.current;
         currentWrap.classList.remove( style.activeWrap );
-        console.log( wrapEl );
 
         if ( callback ) callback( elem );
     }

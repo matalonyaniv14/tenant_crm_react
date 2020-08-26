@@ -1,32 +1,18 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import { InfoBar } from '../TenantInfo/TenantInfo';
-import { BASE_PATH } from '../../Utils/Fetch';
 import style from './style.module.css';
+import { useFetchPost } from '../../Utils/hooks';
+import Spinner from '../Spinner/Spinner';
+import TenantScreen from '../../Screens/TenantScreen/TenantScreen';
 
-const TenantForm = () => {
-    const handleSubmit = ( e ) => {
-        e.preventDefault()
-        const { target: { elements } } = e;
+import {BrowserRouter as Router, Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import cx from 'classnames';
 
-        const tenant = [...elements].reduce( ( acc, current ) => {
-            const { dataset: { label }, value } = current;
-            acc[label] = value
-            return acc;
-        }, {})
-
-        fetch( `${BASE_PATH}/tenants`, {
-            method: 'post',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8' 
-            },
-            body: JSON.stringify({ tenant })
-        })
-    }
-
+const Form = ( {handleSubmit, submitRef} ) => {
     return (
-        <div>
-            <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} >
+            <div className={style.inputWrap}>
                 <InfoBar label='name' title='NAME'  />
                 <InfoBar label='social' title='SOCIAL'    />
                 <InfoBar label='d_o_b' title='DATE OF BIRTH'  type='date'   />
@@ -36,9 +22,82 @@ const TenantForm = () => {
                 <InfoBar label='move_in' title='MOVE IN' type='date'  />
                 <InfoBar label='renewal' title='RENEWAL' type='date'   />
                 <InfoBar label='address' title='ADDRESS'   />
+            </div>
+            <input  
+                ref={submitRef}
+                className={style.submit} 
+                type="submit" 
+                value='Create Tenant'/>
+        </form>
+    );
+}
 
-                <input className={style.submit} type="submit" value='Create Tenant'/>
-            </form>
+
+
+
+const TenantForm = () => {
+    const [_, setState] = useState(null);
+    const formRef = useRef(null);
+    const submitRef = useRef(null);
+    const history = useHistory();
+    const { error, loading, data, post } = useFetchPost();
+
+    const toggleSubmit = () => {
+        const { current } = formRef;
+        const { current: submit } = submitRef;
+
+        if (submit) {
+            const isSubmitted = current.classList.toggle(style.submitted);
+            submit.value = isSubmitted ? ' ' : 'Create Tenant';
+        }
+    }
+
+
+    const handleSubmit = ( e ) => {
+        e.preventDefault();
+        toggleSubmit();
+
+        const { target: { elements } } = e;
+        const tenant = [...elements].reduce( ( acc, current ) => {
+            const { dataset: { label }, value } = current;
+            acc[label] = value
+            return acc;
+        }, {})
+
+        post('/tenants', {tenant})
+    }
+
+
+    useEffect(() => {
+        if (error) {
+            setTimeout(toggleSubmit, 500);        
+        }
+
+        if (data) {
+            history.push(`/tenant/${ data.tenant.id }`)
+        }
+        },[error, data]);
+
+    return (
+        <div>
+        { loading && <Spinner /> }
+        <Router>
+            <Switch>
+                <Route path='/tenant/new'>
+                    <div ref={formRef}>
+                        <div className={cx(style.errors, {[style.active]: error})}>
+                            { error && error.map((e,i) => (
+                                <p key={i}>{e}</p> 
+                            )) }
+                        </div>
+                        <Form handleSubmit={handleSubmit} submitRef={submitRef}/>
+                    </div>
+                </Route>
+                <Route path='/tenant/:id'>
+                    <TenantScreen />
+                </Route>
+            </Switch>
+        </Router>
         </div>
     );
 }

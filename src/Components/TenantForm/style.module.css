@@ -1,12 +1,46 @@
+.inputWrap {
+    transition: all 1s;
+    height: 95vh;
+    overflow: hidden;
+}
+
 .submit {
     border: none;
     width: 100%;
     padding: 30px;
     background: #673AB7;
-    margin-top: 25px;
     font-size: 27px;
     color: white;
     font-weight: bold;
     box-shadow: #675656 -3px -3px 6px 1px;
+    height: 10vh;
+    transition: all 1s;
+    -moz-transition: all 1s;
+}
 
+.submitted .inputWrap {
+    height: 0px !important;
+}
+
+.submitted .submit{
+    height: 100vh !important;
+    margin: 0px;
+
+}
+
+.errors{
+    background: #be4444;
+    padding: 0px;
+    text-align: center;
+    color: white;
+    line-height: 2;
+    font-weight: bold;
+    height: 0px;
+    transition: all 1s;
+    overflow: hidden;
+}
+
+.active.errors {
+    height: auto;
+    padding: 30px !important;
 }
