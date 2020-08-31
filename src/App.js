@@ -13,25 +13,27 @@ import HomeScreen from './Screens/HomeScreen/Homescreen';
 import TenantScreen from './Screens/TenantScreen/TenantScreen';
 import Navbar from './Components/Navbar/Navbar';
 import TenantForm from './Components/TenantForm/TenantForm';
-
+import SignIn from "./Screens/SignIn/SignIn";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-          <Switch>
-            <Route path='/tenant/new' >
-              <TenantForm />
-            </Route>
-            <Route path='/tenant/:tenantId'>
-              <TenantScreen />
-            </Route>
-            <Route path='/'>
-              <HomeScreen />
-            </Route>
-          </Switch>
-      </Router>
+      <SignIn>
+          <Router>
+            <Navbar />
+              <Switch>
+                <Route path='/tenant/new' >
+                  <TenantForm />
+                </Route>
+                <Route path='/tenant/:tenantId'>
+                  <TenantScreen />
+                </Route>
+                <Route path='/'>
+                  <HomeScreen />
+                </Route>
+              </Switch>
+          </Router>
+        </SignIn>
     </div>
   );
 }

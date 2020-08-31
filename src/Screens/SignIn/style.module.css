@@ -1,0 +1,24 @@
+.wrap {
+    margin: 10px 15px;
+    text-align: center;
+}
+
+.submit {
+    font-weight: bold;
+    background: aquamarine;
+    padding: 16px;
+    width: 50%;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+
+input {
+    height: 40px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.error {
+    font-weight: bold;
+    color: red;
+}
