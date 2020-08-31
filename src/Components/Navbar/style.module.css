@@ -25,6 +25,15 @@
 }
 
 
+.currentPage {
+   text-align: center;
+   padding: 10px;
+   color: white;
+   font-weight: bold;
+    
+}
+
+
 /* active */
 
 .activeWrap {

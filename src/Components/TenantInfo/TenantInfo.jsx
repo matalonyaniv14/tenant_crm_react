@@ -14,14 +14,15 @@ const toDateInput = ( d ) => {
 
 
 
-export const InfoBar = ( { id, label, title, value, type='text', callback } ) => {
-    const [ inputVal, setInputVal ] = useState('');
+export const InfoBar = ( { label, title, value, type='text', callback } ) => {
+    const [ inputVal, setInputVal ] = useState(value);
     const wrapEl = useRef(null);
 
 
     const handleClick = () => {
         const currentWrap   = wrapEl.current;
         currentWrap.classList.add( style.activeWrap );
+
     }
 
     const handleInput = ( c ) => {
@@ -36,17 +37,22 @@ export const InfoBar = ( { id, label, title, value, type='text', callback } ) =>
         if ( callback ) callback( elem );
     }
 
+
+
     return (
-        <div  onClick={handleClick} ref={wrapEl} className={ style.wrap }>
+        <div  ref={wrapEl} className={ style.wrap }>
             <p className={ style.title }> { title } </p>
             <div  className={style.bar}>
                 <input 
-                       onChange={handleInput}
-                       onBlur={handleBlur}  
-                       type={ type } 
-                       data-label={ label }
-                       placeholder={value}
-                       value={ type === 'text' ? formatIfNull(inputVal) : inputVal }/>
+                        onClick={handleClick}
+                        onChange={handleInput}
+                        onBlur={handleBlur}  
+                        type={ type } 
+                        data-label={ label }
+                        placeholder={value}
+                        value={ inputVal }
+                />
+                
             </div>
         </div>
     );

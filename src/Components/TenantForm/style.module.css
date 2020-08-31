@@ -1,21 +1,44 @@
+.form {}
+
 .inputWrap {
     transition: all 1s;
-    height: 95vh;
-    overflow: hidden;
+    overflow: scroll;
+    flex-grow: 1;
+    height: 100vh;
 }
 
 .submit {
-    border: none;
+    /* border: none;
     width: 100%;
     padding: 30px;
     background: #673AB7;
     font-size: 27px;
     color: white;
     font-weight: bold;
-    box-shadow: #675656 -3px -3px 6px 1px;
-    height: 10vh;
+    /* box-shadow: #675656 -3px -3px 6px 1px; */
+    /* height: 10vh; */
     transition: all 1s;
     -moz-transition: all 1s;
+    border-radius: 0px !important;
+    font: inherit;
+	cursor: pointer;
+    outline: inherit;
+    border: none;
+}
+
+
+.submitWrap {
+    text-align: center;
+    margin: 25px 0px;
+}
+
+.submitWrap p {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.submitted .submitWrap {
+    display: none;
 }
 
 .submitted .inputWrap {
@@ -25,6 +48,8 @@
 .submitted .submit{
     height: 100vh !important;
     margin: 0px;
+    background: #673AB7;
+
 
 }
 

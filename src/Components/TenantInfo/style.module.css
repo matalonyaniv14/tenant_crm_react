@@ -19,6 +19,7 @@
     border-radius: 5px;
     transition: all .25s;
     -moz-transition: all .25s;
+    min-height: 50px;
 }
 
 .bar input {
@@ -27,17 +28,9 @@
     background: inherit;
     border: none;
     text-align: center;
-}
-/* 
-.activeTitle {
-    font-size: 28px;
-    color: green;
-} */
 
-/* .activeWrap {
-    background-color: white;
-    padding: 35px 0px;
-} */
+}
+
 
 .activeWrap  .bar {
     background-color: white;

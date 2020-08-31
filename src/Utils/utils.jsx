@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const capitalize = ( s ) => {
     return s.charAt(0).toUpperCase() + s.slice(1)
   }
@@ -49,4 +51,21 @@ export const sortBy = ( list, key ) => {
     })
 
     return sorted;
+}
+
+
+export const formatPathName = ( path ) => {
+
+       if ( path === '/' ) { 
+           return "HomePage";
+        }
+       else if( path === '/tenant/new')  {
+           return 'Create New Tenant';
+        }
+       else if ( /\/tenant\/[0-9]+/.test(path) ) {
+           return (
+              <> <p onClick={() => window.location.reload()} > Tenant Information</p></>
+           );
+       }
+  
 }

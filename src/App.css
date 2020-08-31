@@ -44,15 +44,27 @@ a {
     background: white;
     border-radius: 50%;
     font-weight: bold;
-    font-size: 1.5em;
     text-align: center;
     height: 40px;
     width: 45px;
+    padding: 0px;
     cursor: pointer;
+}
+
+.toggleYearToggler p {
+    margin-top: 7px;
 }
 
 .disabled {
     background: #1a4163;
     color: red;
     cursor: not-allowed;
+}
+
+input[type='date'] {
+    -webkit-appearance: none !important;
+    background: inherit !important;
+    outline: none inherit;
+    height: 100% !important;
+    width: 60% !important;
 }

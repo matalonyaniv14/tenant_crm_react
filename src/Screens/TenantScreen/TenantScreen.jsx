@@ -41,7 +41,7 @@ const ToggleYear = ( { year, callback } ) => {
            <div className={cx('toggleYearToggler', {['disabled']: year >= MAX_YEAR })}>
                 <p onClick={ () => callback('ADD') }  >+</p>
             </div>
-            <p style={{fontWeight: 'bold', fontSize: '25px'}}>
+            <p style={{fontWeight: 'bold', fontSize: '25px', marginTop: '5px'}}>
                  {year} 
             </p>
            <div className={cx('toggleYearToggler', { ['disabled']: year <= MIN_YEAR })}>

@@ -11,6 +11,7 @@ import {
 import style from './style.module.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { formatPathName } from '../../Utils/utils';
 
 
 
@@ -26,6 +27,8 @@ const Navbar = () => {
     }
 
     useEffect(() => {
+        console.log(pathname);
+
         setActive( false );
     }, [ pathname ])
 
@@ -58,6 +61,9 @@ const Navbar = () => {
             <div onClick={ handleClick }
                  className={ style.icon }>
                 { burgerIcon }
+            </div>
+            <div className={style.currentPage}>
+                <p> { formatPathName( pathname ) }</p>
             </div>
         </div>
     )

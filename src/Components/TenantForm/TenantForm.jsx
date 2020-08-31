@@ -9,9 +9,10 @@ import TenantScreen from '../../Screens/TenantScreen/TenantScreen';
 import {BrowserRouter as Router, Route, Switch, useLocation, useHistory } from 'react-router-dom';
 import cx from 'classnames';
 
+
 const Form = ( {handleSubmit, submitRef} ) => {
     return (
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} className={style.form} >
             <div className={style.inputWrap}>
                 <InfoBar label='name' title='NAME'  />
                 <InfoBar label='social' title='SOCIAL'    />
@@ -23,11 +24,12 @@ const Form = ( {handleSubmit, submitRef} ) => {
                 <InfoBar label='renewal' title='RENEWAL' type='date'   />
                 <InfoBar label='address' title='ADDRESS'   />
             </div>
-            <input  
-                ref={submitRef}
-                className={style.submit} 
-                type="submit" 
-                value='Create Tenant'/>
+            <div className={style.submitWrap}>
+                <label htmlFor="tenantNew"  className={style.submit}> 
+                    <p>Create Tenant</p>
+                </label>
+                <input  id='tenantNew' type="submit"  hidden/>
+            </div>
         </form>
     );
 }
@@ -38,17 +40,16 @@ const Form = ( {handleSubmit, submitRef} ) => {
 const TenantForm = () => {
     const [_, setState] = useState(null);
     const formRef = useRef(null);
-    const submitRef = useRef(null);
     const history = useHistory();
     const { error, loading, data, post } = useFetchPost();
 
     const toggleSubmit = () => {
         const { current } = formRef;
-        const { current: submit } = submitRef;
+        // const { current: submit } = submitRef;
 
-        if (submit) {
+        if (current) {
             const isSubmitted = current.classList.toggle(style.submitted);
-            submit.value = isSubmitted ? ' ' : 'Create Tenant';
+            // submit.value = isSubmitted ? ' ' : 'Create Tenant';
         }
     }
 
@@ -66,7 +67,6 @@ const TenantForm = () => {
 
         post('/tenants', {tenant})
     }
-
 
     useEffect(() => {
         if (error) {
@@ -90,7 +90,7 @@ const TenantForm = () => {
                                 <p key={i}>{e}</p> 
                             )) }
                         </div>
-                        <Form handleSubmit={handleSubmit} submitRef={submitRef}/>
+                        <Form handleSubmit={handleSubmit} />
                     </div>
                 </Route>
                 <Route path='/tenant/:id'>
