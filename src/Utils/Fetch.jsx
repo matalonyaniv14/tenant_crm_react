@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-export const BASE_PATH = 'http://tenant-api.xyz';
+export const BASE_PATH = 'http://www.tenant-api.xyz';
 // export const BASE_PATH = 'http://localhost:3000';
 
 
