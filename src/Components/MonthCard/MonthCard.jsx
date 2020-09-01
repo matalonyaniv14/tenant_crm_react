@@ -48,13 +48,12 @@ const MonthCard = ( props ) => {
             method: 'put',
             body: body
         }).then( response => response.json() )
-          .then( d => setEditableBox({
-              ...d.data,
-              loading: false
-          }))
+          .then(( d )=> {
+              setEditableBox({...d.data, loading: false})
+              // re update props
+              forceUpdate();
+            })
 
-        // re update props
-        forceUpdate();
     }
 
 
