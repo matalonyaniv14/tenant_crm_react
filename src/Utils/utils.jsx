@@ -64,7 +64,9 @@ export const formatPathName = ( path ) => {
         }
        else if ( /\/tenant\/[0-9]+/.test(path) ) {
            return (
-              <> <p onClick={() => window.location.reload()} > Tenant Information</p></>
+              <div>
+                  <p onClick={() => window.location.reload()} > Tenant Information</p>
+              </div>
            );
        }
   

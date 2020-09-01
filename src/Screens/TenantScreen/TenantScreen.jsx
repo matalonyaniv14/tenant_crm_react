@@ -1,21 +1,23 @@
 import React from 'react';
-import Spinner from '../../Components/Spinner/Spinner';
 import {
     Link,
     useRouteMatch,
-    useParams
-  } from "react-router-dom";
+    useParams,
+    useHistory
+} from "react-router-dom";
+import { useState } from 'react';
+import cx from 'classnames';
 
-import Fetch from '../../Utils/Fetch';
+import Spinner from '../../Components/Spinner/Spinner';
+import Fetch, { BASE_PATH } from '../../Utils/Fetch';
 import { takeBalanceOwed, sortBy } from '../../Utils/utils';
 import EarningsCard from '../../Components/EarningsCard/EarningsCard';
 import MonthCard from '../../Components/MonthCard/MonthCard';
-import { useState } from 'react';
-import cx from 'classnames';
 import  TenantInfo  from '../../Components/TenantInfo/TenantInfo';
 
 
-const MAX_YEAR = 2030;
+
+const MAX_YEAR = 2026;
 const MIN_YEAR = new Date().getFullYear();
 
 const takeTotalEarnings = ( paymentHistory, monthlyPayment ) => {
@@ -55,6 +57,7 @@ const ToggleYear = ( { year, callback } ) => {
 
 
 const TenantScreen = () => {
+    const history = useHistory();
     const{ tenantId } = useParams()
     const [_, setState ] = useState(null);
     const [ year, setYear ] = useState(new Date().getFullYear());
@@ -77,6 +80,15 @@ const TenantScreen = () => {
             setYear(currentYear);
         }
         
+    }
+
+
+    const handleDelete = () => {
+       let confirm =  window.confirm('You are about to delete this tenant...Are you sure?');
+       if ( confirm ) {
+           fetch(`${BASE_PATH}/tenants/${tenantId}`, {method: 'DELETE'})
+                .then(_ => history.push('/tenants') )
+       }
     }
 
 
@@ -105,6 +117,7 @@ const TenantScreen = () => {
             
                         return (
                             <>
+                                <p id='delete-tenant' onClick={handleDelete}>Delete Tenant</p>
                                 <EarningsCard  { ...takeTotalEarnings( payment_history, monthly_payment ) } />
                                 <p onClick={ () => setInfoShown(true) }
                                    id='header' 

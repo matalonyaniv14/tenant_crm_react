@@ -68,3 +68,16 @@ input[type='date'] {
     height: 100% !important;
     width: 60% !important;
 }
+
+
+#delete-tenant {
+    text-align: center;
+    background: #e24242;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 2px;
+    padding: 9px;
+    color: white;
+    font-weight: 500;
+    border: 1px solid white;
+}
