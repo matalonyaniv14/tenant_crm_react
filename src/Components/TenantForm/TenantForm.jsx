@@ -45,11 +45,9 @@ const TenantForm = () => {
 
     const toggleSubmit = () => {
         const { current } = formRef;
-        // const { current: submit } = submitRef;
 
         if (current) {
             const isSubmitted = current.classList.toggle(style.submitted);
-            // submit.value = isSubmitted ? ' ' : 'Create Tenant';
         }
     }
 

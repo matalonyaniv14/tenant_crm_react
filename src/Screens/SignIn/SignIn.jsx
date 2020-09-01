@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BASE_PATH } from '../../Utils/Fetch';
 import style from './style.module.css';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const formatCookies = ( cookieString ) => {
     return cookieString.split( ';' )
@@ -15,16 +17,6 @@ const formatCookies = ( cookieString ) => {
 
 
 
-const authorized = () => {
-    const auth = localStorage.getItem('authorized');
-
-    if ( auth === 'true' ) {
-        return true;
-    }
-
-    return false;
-}
-
 
 
 
@@ -32,8 +24,23 @@ const authorized = () => {
 const SignIn = ( props ) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [_, setState] = useState(null);
+    const [auth, setAuth] = useState(false);
+    const [state, setState] = useState(false);
+    
 
+    const authorized = async () => {
+        const auth = localStorage.getItem('authorized');
+        const data = await fetch(BASE_PATH + '/authorization?pass=' + auth)
+        const result = await data.json();
+        setAuth(result.ok);
+    }
+
+    useEffect(() => {
+        console.log('useffect', auth);
+        authorized()
+
+    }, [state])
+    
     
     const handleInput = (e) => {
         setPassword(e.target.value);
@@ -44,19 +51,12 @@ const SignIn = ( props ) => {
         fetch(BASE_PATH + '/sign_in' + '?password=' + password)
             .then(res => res.json())
             .then( data => {
-                console.log(data);
-                if ( data.error ) {
-                    console.log('error');
-                }
-                
                 if ( data.error ) {
                     setError(data.error);
                 }
-
                 if ( data.authorized ) {
-                    // ;expires=${data.expiration.toUTCString()}
-                   localStorage.setItem('authorized', true);
-                   setState({});
+                   localStorage.setItem('authorized', data.storage);
+                   setState(true);
                 }
 
 
@@ -64,26 +64,24 @@ const SignIn = ( props ) => {
     }
 
 
-
-
-    if ( authorized() ) {
+    if (auth) {
         return props.children;
     }
 
     return (
         <div className={style.wrap}>
-            <h1>Please Sign In</h1>
-            <h4 className={style.error}>{error}</h4>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <input  onChange={handleInput} value={password}/>
-                    <div className={style.submit}>
-                        <label htmlFor="signIn"> Sign In</label>
-                        <input type="submit" id="signIn" hidden/>
+                    <h1>Please Sign In</h1>
+                    <h4 className={style.error}>{error}</h4>
+                    <div>
+                        <form onSubmit={handleSubmit}>
+                            <input  onChange={handleInput} value={password}/>
+                            <div className={style.submit}>
+                                <label htmlFor="signIn"> Sign In</label>
+                                <input type="submit" id="signIn" hidden/>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
     );
 }
 
