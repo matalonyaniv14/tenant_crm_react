@@ -14,7 +14,8 @@ const PaymentBox = ( { title, value, onClick, editable, onBlur, onInput } ) => {
             </div>
             <div  onClick={ onClick } className={cx(style.paymentValue,{[style.unpaid]: value < 0})}>
                 {
-                    editable ? <input  onInput={onInput} onBlur={onBlur} placeholder={value} type={formType} autoFocus/> :
+                    editable ? <input  onInput={onInput} onBlur={onBlur} placeholder={value} type={formType} autoFocus/> 
+                             :
                     <p>{ 
                         isNumber( value ) ? toCurrency( value ) : formatIfNull( value ) 
                         }

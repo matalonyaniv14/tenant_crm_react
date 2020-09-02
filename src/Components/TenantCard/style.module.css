@@ -22,8 +22,19 @@
     padding: 10px 20px;
 }
 
-.cardHeader p:first-child {
-    width: 70% !important;
+.cardInnerContent {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column-reverse;
+}
+
+.cardInnerContent p {
+    color: black;
+}
+
+.cardInnerContent p:first-child {
+    font-size: 18px;
+
 }
 
 .cardPaymentInfo {

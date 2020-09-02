@@ -114,7 +114,6 @@ const TenantScreen = () => {
                         let { monthly_payment, payment_history } = tenant;
                     
                         payment_history =  payment_history.filter( ({ year: _year }) => _year === year )
-            
                         return (
                             <>
                                 <p id='delete-tenant' onClick={handleDelete}>Delete Tenant</p>

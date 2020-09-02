@@ -36,7 +36,7 @@ export const takeBalanceOwed = ( totalPayed, totalDue ) => {
 export const formatDate = ( d ) => {
     let [month, day, year]  = ( new Date( d ) ).toLocaleDateString().split("/");
 
-    return `${ MONTHS[month] } ${ day }, ${ year }`
+    return `${ MONTHS[month - 1] } ${ day }, ${ year }`
 }
 
 

@@ -32,8 +32,8 @@ const TenantCard = ( props ) => {
             monthly_payment,
             snapshot,
             payment_history,
-            id } = props;
-
+            id,
+            name } = props;
 
 
     return (
@@ -42,7 +42,10 @@ const TenantCard = ( props ) => {
                 {/* header */}
                 <Link to={ (l) => ( {...l, pathname: `/tenant/${ id }`} ) }>    
                     <div className={style.cardHeader}>
-                        <p id='header'>{ address }</p>
+                        <div className={style.cardInnerContent}>
+                            <p id='header'>{ address }</p>
+                            <p id='header'> { name } </p>
+                        </div>
                         <p id='subHeader'>{ toCurrency( monthly_payment ) }</p>
                     </div>
                 </Link>

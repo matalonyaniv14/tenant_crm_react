@@ -1,0 +1,28 @@
+.partialPayments {
+    display: none;
+}
+
+.partialPaymentRow {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.partialPaymentRow p:nth-child(-n+2) {
+    min-width: 20%;
+    max-width: 20%;
+}
+
+.showPartial {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.active {
+    display: visible !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
