@@ -19,7 +19,8 @@ export const useFetchPost = () => {
             body: JSON.stringify(body)
         }
         try {
-            fetch(`${BASE_PATH}/${path}`, OPTIONS)
+            const auth = localStorage.getItem('authorized');
+            fetch(`${BASE_PATH}/${path}?pass=${auth}`, OPTIONS)
                 .then((response) => {
                     return response.json();
                 })
@@ -51,3 +52,4 @@ export const useFetchPost = () => {
 
     return { error, loading, data, post }
 }
+
