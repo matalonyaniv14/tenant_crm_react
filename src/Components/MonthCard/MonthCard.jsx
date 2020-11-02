@@ -49,11 +49,7 @@ const MonthCard = ( props ) => {
 
     const onBlur = ( e ) => {
         if ( reset(!isChanged) ) return;
-        // if ( !isChanged ) {
-        //     setEditableBox({focused: false});
-        //     return;
-        // }
-
+    
         if ( editableBox.title == 'Total Payed') {
             let _confirm = window.confirm(`You are about to add a payment of  ( ${toCurrency(editableBox.value)} ) ` + "\n" +
                                           `with a payment method of  ( ${formatIfNull(method_payed)} )  ` + "\n" +
@@ -75,7 +71,6 @@ const MonthCard = ( props ) => {
             body: body
         }).then( response => response.json() )
           .then(( d )=> {
-              console.log(d);
               setEditableBox({...d.data, loading: false})
               // re update props
               forceUpdate();

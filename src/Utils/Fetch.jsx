@@ -13,7 +13,8 @@ const Fetch = ( props ) => {
  
     useEffect( () => {
         try {
-            fetch( BASE_PATH + props.path )
+            const auth = localStorage.getItem('authorized');
+            fetch( BASE_PATH + props.path  + '?pass=' + auth)
                 .then( (resp) =>{ 
                     if ( resp.ok ) {
                         return  resp.json();
@@ -44,3 +45,4 @@ const Fetch = ( props ) => {
 
 export default Fetch;
 // 
+
