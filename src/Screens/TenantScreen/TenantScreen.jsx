@@ -60,7 +60,7 @@ const TenantScreen = () => {
     const history = useHistory();
     const{ tenantId } = useParams()
     const [_, setState ] = useState(null);
-    const [ year, setYear ] = useState(new Date().getFullYear());
+    const [ year, setYear ] = useState(new Date().getFullYear()) - 2;
     const [ infoShown, setInfoShown ] = useState(false);
     
     const forceUpdate = () => {
