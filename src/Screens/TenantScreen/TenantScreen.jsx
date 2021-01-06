@@ -96,7 +96,7 @@ const TenantScreen = () => {
         <div>
             <Fetch path={`/tenants/${ tenantId }`} > 
                 {
-                    ( { tenant }, loading, error ) => {
+                    ( tenant , loading, error ) => {
 
                         if ( error !== '' ) {
                             return <p> {error} </p>
@@ -110,7 +110,7 @@ const TenantScreen = () => {
                             return <TenantInfo {...tenant} />
                         }
 
-
+                        tenant = tenant.tenant
                         let { monthly_payment, payment_history } = tenant;
                     
                         payment_history =  payment_history.filter( ({ year: _year }) => _year === year )
