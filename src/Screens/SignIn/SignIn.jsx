@@ -30,9 +30,11 @@ const SignIn = ( props ) => {
 
     const authorized = async () => {
         const auth = localStorage.getItem('authorized');
-        const data = await fetch(BASE_PATH + '/authorization?pass=' + auth)
-        const result = await data.json();
-        setAuth(result.ok);
+        if (auth) {
+            const data = await fetch(BASE_PATH + '/authorization?pass=' + auth)
+            const result = await data.json();
+            setAuth(result.ok);
+        }
     }
 
     useEffect(() => {

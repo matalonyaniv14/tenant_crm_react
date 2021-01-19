@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 
 export const BASE_PATH = 'https://www.tenant-api.xyz';
-// export const BASE_PATH = 'http://localhost:3002';
+// export const BASE_PATH = 'http://localhost:3000';
 
 
 const Fetch = ( props ) => {

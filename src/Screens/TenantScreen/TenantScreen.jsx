@@ -18,7 +18,7 @@ import  TenantInfo  from '../../Components/TenantInfo/TenantInfo';
 
 
 const MAX_YEAR = 2026;
-const MIN_YEAR = new Date().getFullYear();
+const MIN_YEAR = 2020;
 
 const takeTotalEarnings = ( paymentHistory, monthlyPayment ) => {
     let totalDue, totalPayed, balanceOwed, paymentDueUntilToday;
@@ -27,7 +27,7 @@ const takeTotalEarnings = ( paymentHistory, monthlyPayment ) => {
     totalDue = paymentDueUntilToday.length * monthlyPayment;
     totalPayed = paymentDueUntilToday
                     .map( month => month.total_payed )
-                    .reduce( ( total, curr ) => total += curr );
+                    .reduce( ( total, curr ) => total += curr,0);
 
     balanceOwed =  takeBalanceOwed(totalPayed, totalDue);
 
@@ -60,7 +60,7 @@ const TenantScreen = () => {
     const history = useHistory();
     const{ tenantId } = useParams()
     const [_, setState ] = useState(null);
-    const [ year, setYear ] = useState(new Date().getFullYear()) - 2;
+    const [ year, setYear ] = useState(new Date().getFullYear()) ;
     const [ infoShown, setInfoShown ] = useState(false);
     
     const forceUpdate = () => {
